@@ -1,5 +1,6 @@
 require "administrate_charts/version"
 
 module AdministrateCharts
-  # Your code goes here...
+  class Engine < ::Rails::Engine
+  end
 end
