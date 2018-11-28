@@ -1,0 +1,1 @@
+<%= bar_chart User.group(params[:y_axis].to_sym).sum(params[:x_axis].to_sym) %>
