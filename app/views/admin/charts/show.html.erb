@@ -18,7 +18,7 @@
     x_axis: params[:x_axis],
     y_axis: params[:y_axis],
     function: params[:function]),
-    ytitle: params[:x_axis],
-    xtitle: params[:y_axis]
+    ytitle: params[:x_axis].humanize,
+    xtitle: params[:y_axis].humanize
   %>
 </section>
