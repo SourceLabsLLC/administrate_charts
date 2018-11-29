@@ -16,21 +16,34 @@
   <%= form_with(url: show_admin_dashboards_path , local: true, method: :get, class: "form") do |f| %>
     <div class="field-unit">
       <div class="field-unit__label">
+        <%= f.label 'Resource' %>
+      </div>
+      <div class="field-unit__field">
+        <%=
+          f.select(
+            :resource,
+            resource_select_options,
+            include_blank: true
+          )
+        %>
+      </div>
+    </div>
+
+    <div class="field-unit">
+      <div class="field-unit__label">
         <%= f.label 'X axis' %>
       </div>
       <div class="field-unit__field">
         <%=
           f.select(
             :x_axis,
-            options_from_collection_for_select(
-              UserDashboard::ATTRIBUTE_TYPES.keys,
-              :to_s,
-              :to_s
-            )
+            [],
+            include_blank: true
           )
         %>
       </div>
     </div>
+
     <div class="field-unit">
       <div class="field-unit__label">
         <%= f.label 'Y axis' %>
@@ -39,11 +52,8 @@
         <%=
           f.select(
             :y_axis,
-            options_from_collection_for_select(
-              UserDashboard::ATTRIBUTE_TYPES.keys,
-              :to_s,
-              :to_s
-            )
+            [],
+            include_blank: true
           )
         %>
       </div>

@@ -1,1 +1,1 @@
-<%= bar_chart User.group(params[:y_axis].to_sym).sum(params[:x_axis].to_sym) %>
+<%= column_chart chart_data_admin_dashboards_path(resource: params[:resource], x_axis: params[:x_axis], y_axis: params[:y_axis]) %>

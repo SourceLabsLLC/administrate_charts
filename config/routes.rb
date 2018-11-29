@@ -4,6 +4,8 @@ Rails.application.routes.draw do
       collection do
         get :new
         get '/show', action: :show
+        get :resource_attributes
+        get :chart_data
       end
     end
   end
