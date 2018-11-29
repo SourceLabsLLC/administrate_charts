@@ -1,12 +1,12 @@
 module Admin
-  class DashboardsController < Admin::ApplicationController
+  class ChartsController < Admin::ApplicationController
     def new
     end
 
     def show
     end
 
-    def chart_data
+    def data
       model_class = params[:resource].singularize.capitalize.constantize
       data = model_class.
         group(params[:y_axis].to_sym).

@@ -13,7 +13,7 @@ $(function(){
 
     $.ajax({
       method: "GET",
-      url: '/admin/dashboards/resource_attributes.json',
+      url: '/admin/charts/resource_attributes.json',
       data: { resource: resource }
     }).done(function( result ) {
       replaceOptions($('select[name=x_axis].axis'), result)

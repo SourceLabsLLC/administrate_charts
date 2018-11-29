@@ -1,1 +1,1 @@
-Administrate::Engine.add_javascript "dashboards"
+Administrate::Engine.add_javascript "charts"

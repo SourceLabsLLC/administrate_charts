@@ -1,1 +1,1 @@
-Rails.application.config.assets.precompile += %w( chartkickBundle.js dashboards.js )
+Rails.application.config.assets.precompile += %w( chartkickBundle.js charts.js )
