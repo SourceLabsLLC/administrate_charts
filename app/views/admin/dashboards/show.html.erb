@@ -1,1 +1,8 @@
-<%= column_chart chart_data_admin_dashboards_path(resource: params[:resource], x_axis: params[:x_axis], y_axis: params[:y_axis]) %>
+<%= column_chart chart_data_admin_dashboards_path(
+  resource: params[:resource],
+  x_axis: params[:x_axis],
+  y_axis: params[:y_axis],
+  function: params[:function]),
+  ytitle: params[:x_axis],
+  xtitle: params[:y_axis]
+%>

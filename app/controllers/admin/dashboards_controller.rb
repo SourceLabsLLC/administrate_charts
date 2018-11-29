@@ -8,7 +8,9 @@ module Admin
 
     def chart_data
       model_class = params[:resource].singularize.capitalize.constantize
-      data = model_class.group(params[:y_axis].to_sym).sum(params[:x_axis].to_sym)
+      data = model_class.
+        group(params[:y_axis].to_sym).
+        send(params[:function], params[:x_axis].to_sym)
 
       render json: data
     end

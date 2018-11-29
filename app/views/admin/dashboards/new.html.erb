@@ -31,14 +31,15 @@
 
     <div class="field-unit">
       <div class="field-unit__label">
-        <%= f.label 'X axis' %>
+        <%= f.label 'Y axis Group by attribute' %>
       </div>
       <div class="field-unit__field">
         <%=
           f.select(
-            :x_axis,
+            :y_axis,
             [],
-            include_blank: true
+            { include_blank: true },
+            { class: 'axis' }
           )
         %>
       </div>
@@ -46,14 +47,29 @@
 
     <div class="field-unit">
       <div class="field-unit__label">
-        <%= f.label 'Y axis' %>
+        <%= f.label 'X axis Attribute' %>
       </div>
       <div class="field-unit__field">
         <%=
           f.select(
-            :y_axis,
+            :x_axis,
             [],
-            include_blank: true
+            { include_blank: true },
+            { class: 'axis' }
+          )
+        %>
+      </div>
+    </div>
+
+    <div class="field-unit">
+      <div class="field-unit__label">
+        <%= f.label 'X axis Funcion' %>
+      </div>
+      <div class="field-unit__field">
+        <%=
+          f.select(
+            :function,
+            [['Sum', :sum], ['Count', :count]]
           )
         %>
       </div>
