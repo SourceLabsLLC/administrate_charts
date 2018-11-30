@@ -13,7 +13,7 @@
 </header>
 
 <section class="main-content__body">
-  <%= form_with(url: show_admin_charts_path , local: true, method: :get, class: "form") do |f| %>
+  <%= form_with(url: show_admin_charts_path , local: true, method: :post, class: "form") do |f| %>
     <div class="field-unit">
       <div class="field-unit__label">
         <%= f.label 'Resource' %>
@@ -31,7 +31,7 @@
 
     <div class="field-unit">
       <div class="field-unit__label">
-        <%= f.label 'Y axis Group by attribute' %>
+        <%= f.label 'Group by attribute' %>
       </div>
       <div class="field-unit__field">
         <%=
@@ -47,7 +47,7 @@
 
     <div class="field-unit">
       <div class="field-unit__label">
-        <%= f.label 'X axis Attribute' %>
+        <%= f.label 'Attribute to apply function' %>
       </div>
       <div class="field-unit__field">
         <%=
@@ -63,7 +63,7 @@
 
     <div class="field-unit">
       <div class="field-unit__label">
-        <%= f.label 'X axis Funcion' %>
+        <%= f.label 'Funcion' %>
       </div>
       <div class="field-unit__field">
         <%=
