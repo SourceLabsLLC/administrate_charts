@@ -8,10 +8,10 @@ module Admin
 
     def data
       chart_data = Admin::ChartProcessor.call(
-        params[:resource],
-        params[:group_attribute],
-        params[:attribute_to_apply_function],
-        params[:function]
+        chart_params[:resource],
+        chart_params[:group_attribute],
+        chart_params[:attribute_to_apply_function],
+        chart_params[:function]
       )
 
       render json: chart_data
@@ -24,8 +24,12 @@ module Admin
     private
 
     def dashboard_class
-      klass = params[:resource].singularize.camelize + 'Dashboard'
+      klass = chart_params[:resource].singularize.camelize + 'Dashboard'
       klass.constantize
+    end
+
+    def chart_params
+      params.permit(:chart_type, :resource, :group_attribute, :attribute_to_apply_function, :function)
     end
   end
 end

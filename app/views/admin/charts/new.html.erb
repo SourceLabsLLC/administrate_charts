@@ -16,6 +16,20 @@
   <%= form_with(url: show_admin_charts_path , local: true, method: :post, class: "form") do |f| %>
     <div class="field-unit">
       <div class="field-unit__label">
+        <%= f.label 'Chart type' %>
+      </div>
+      <div class="field-unit__field">
+        <%=
+          f.select(
+            :chart_type,
+            Admin::ChartsHelper::CHART_TYPES
+          )
+        %>
+      </div>
+    </div>
+
+    <div class="field-unit">
+      <div class="field-unit__label">
         <%= f.label 'Resource' %>
       </div>
       <div class="field-unit__field">
@@ -69,7 +83,7 @@
         <%=
           f.select(
             :function,
-            [['Sum', :sum], ['Count', :count], ['Average', :average]]
+            Admin::ChartsHelper::FUNCTION_TYPES
           )
         %>
       </div>
