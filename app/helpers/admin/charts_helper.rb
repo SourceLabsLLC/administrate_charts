@@ -33,8 +33,8 @@ module Admin
           xtitle: chart_params[:group_attribute].humanize
       when 'bar'
         bar_chart data_admin_charts_path(chart_params),
-          xtitle: chart_params[:group_attribute].humanize,
-          ytitle: chart_params[:attribute_to_apply_function].humanize
+          ytitle: chart_params[:group_attribute].humanize,
+          xtitle: chart_params[:attribute_to_apply_function].humanize
       when 'area'
         area_chart data_admin_charts_path(chart_params),
           ytitle: chart_params[:attribute_to_apply_function].humanize,

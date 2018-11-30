@@ -1,3 +1,5 @@
+require 'groupdate'
+
 module Admin
   class ChartProcessor
     def self.call(resource, group_attribute, attribute_to_apply_function, function)
@@ -12,8 +14,26 @@ module Admin
     end
 
     def call
-      query = resource_class.group(group_attribute.to_sym)
+      query = group_query(resource_class)
+      query = calculate_query(query)
 
+      query
+    end
+
+    private
+
+    attr_accessor :resource, :group_attribute, :attribute_to_apply_function, :function
+
+    def group_query(query)
+      case attribute_type(group_attribute)
+      when Administrate::Field::DateTime.to_s
+        query.group_by_day(group_attribute.to_sym, format: '%b %d')
+      else
+        query.group(group_attribute.to_sym)
+      end
+    end
+
+    def calculate_query(query)
       case attribute_type(attribute_to_apply_function)
       when Administrate::Field::HasMany.to_s, Administrate::Field::HasOne.to_s
         query.joins(attribute_to_apply_function.to_sym).
@@ -23,13 +43,11 @@ module Admin
       end
     end
 
-    private
-
-    attr_accessor :resource, :group_attribute, :attribute_to_apply_function, :function
-
     def dashboard_class
-      klass = resource.singularize.camelize + 'Dashboard'
-      klass.constantize
+      @dashboard_class ||= begin
+        klass = resource.singularize.camelize + 'Dashboard'
+        klass.constantize
+      end
     end
 
     def resource_class
