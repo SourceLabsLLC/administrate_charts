@@ -7,12 +7,14 @@ module Admin
     end
 
     def data
-      model_class = params[:resource].singularize.capitalize.constantize
-      data = model_class.
-        group(params[:y_axis].to_sym).
-        send(params[:function], params[:x_axis].to_sym)
+      chart_data = Admin::ChartProcessor.call(
+        params[:resource],
+        params[:y_axis],
+        params[:x_axis],
+        params[:function]
+      )
 
-      render json: data
+      render json: chart_data
     end
 
     def resource_attributes
