@@ -16,8 +16,8 @@ $(function(){
       url: '/admin/charts/resource_attributes.json',
       data: { resource: resource }
     }).done(function( result ) {
-      replaceOptions($('select[name=x_axis].axis'), result)
-      replaceOptions($('select[name=y_axis].axis'), result)
+      replaceOptions($('select[name=attribute_to_apply_function].axis'), result)
+      replaceOptions($('select[name=group_attribute].axis'), result)
     })
   })
 })

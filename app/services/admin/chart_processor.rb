@@ -1,30 +1,31 @@
 module Admin
   class ChartProcessor
-    def self.call(resource, y_axis_attribute, x_axis_attribute, x_axis_function)
-      new(resource, y_axis_attribute, x_axis_attribute, x_axis_function).call
+    def self.call(resource, group_attribute, attribute_to_apply_function, function)
+      new(resource, group_attribute, attribute_to_apply_function, function).call
     end
 
-    def initialize(resource, y_axis_attribute, x_axis_attribute, x_axis_function)
+    def initialize(resource, group_attribute, attribute_to_apply_function, function)
       @resource = resource
-      @y_axis_attribute = y_axis_attribute
-      @x_axis_attribute = x_axis_attribute
-      @x_axis_function = x_axis_function
+      @group_attribute = group_attribute
+      @attribute_to_apply_function = attribute_to_apply_function
+      @function = function
     end
 
     def call
-      query = resource_class.group(y_axis_attribute.to_sym)
+      query = resource_class.group(group_attribute.to_sym)
 
-      case attribute_type(x_axis_attribute)
+      case attribute_type(attribute_to_apply_function)
       when Administrate::Field::HasMany.to_s, Administrate::Field::HasOne.to_s
-        query.joins(x_axis_attribute.to_sym).send(x_axis_function.to_sym, "#{x_axis_attribute.pluralize}.id")
+        query.joins(attribute_to_apply_function.to_sym).
+          send(function.to_sym, "#{attribute_to_apply_function.pluralize}.id")
       else
-        query.send(x_axis_function.to_sym, x_axis_attribute.to_sym)
+        query.send(function.to_sym, attribute_to_apply_function.to_sym)
       end
     end
 
     private
 
-    attr_accessor :resource, :y_axis_attribute, :x_axis_attribute, :x_axis_function
+    attr_accessor :resource, :group_attribute, :attribute_to_apply_function, :function
 
     def dashboard_class
       klass = resource.singularize.camelize + 'Dashboard'

@@ -9,8 +9,8 @@ module Admin
     def data
       chart_data = Admin::ChartProcessor.call(
         params[:resource],
-        params[:y_axis],
-        params[:x_axis],
+        params[:group_attribute],
+        params[:attribute_to_apply_function],
         params[:function]
       )
 

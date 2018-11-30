@@ -15,10 +15,10 @@
 <section class="main-content__body">
   <%= column_chart data_admin_charts_path(
     resource: params[:resource],
-    x_axis: params[:x_axis],
-    y_axis: params[:y_axis],
+    attribute_to_apply_function: params[:attribute_to_apply_function],
+    group_attribute: params[:group_attribute],
     function: params[:function]),
-    ytitle: params[:x_axis].humanize,
-    xtitle: params[:y_axis].humanize
+    ytitle: params[:attribute_to_apply_function].humanize,
+    xtitle: params[:group_attribute].humanize
   %>
 </section>
