@@ -1,5 +1,5 @@
 <% content_for(:title) do %>
-  Dashboard
+  Dashboard: <%= params[:resource].humanize %> grouped by "<%= params[:group_attribute].humanize %>" and applied "<%= params[:function] %>" function on attribute "<%= params[:attribute_to_apply_function] %>"
 <% end %>
 
 <header class="main-content__header" role="banner">
