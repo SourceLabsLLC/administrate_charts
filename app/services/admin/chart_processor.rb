@@ -27,7 +27,7 @@ module Admin
     def group_query(query)
       case attribute_type(group_attribute)
       when Administrate::Field::DateTime.to_s
-        query.group_by_day(group_attribute.to_sym, format: '%b %d')
+        query.group_by_day(group_attribute.to_sym, format: '%m/%d/%Y')
       else
         query.group(group_attribute.to_sym)
       end
