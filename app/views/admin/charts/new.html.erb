@@ -22,7 +22,8 @@
         <%=
           f.select(
             :chart_type,
-            Admin::ChartsHelper::CHART_TYPES
+            Admin::ChartsHelper::CHART_TYPES,
+            selected: params[:chart_type]
           )
         %>
       </div>
@@ -37,6 +38,7 @@
           f.select(
             :resource,
             resource_select_options,
+            selected: params[:resource],
             include_blank: true
           )
         %>
@@ -51,8 +53,8 @@
         <%=
           f.select(
             :group_attribute,
-            [],
-            { include_blank: true },
+            attribute_select_options(params[:resource]),
+            { include_blank: true, selected: params[:group_attribute] },
             { class: 'axis' }
           )
         %>
@@ -67,8 +69,8 @@
         <%=
           f.select(
             :attribute_to_apply_function,
-            [],
-            { include_blank: true },
+            attribute_select_options(params[:resource]),
+            { include_blank: true, selected: params[:attribute_to_apply_function] },
             { class: 'axis' }
           )
         %>
@@ -83,7 +85,8 @@
         <%=
           f.select(
             :function,
-            Admin::ChartsHelper::FUNCTION_TYPES
+            Admin::ChartsHelper::FUNCTION_TYPES,
+            selected: params[:function]
           )
         %>
       </div>

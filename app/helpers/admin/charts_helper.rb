@@ -11,14 +11,27 @@ module Admin
       end.compact!
     end
 
-    def draw_chart(params)
-      chart_params = params.permit(
+    def attribute_select_options(resource)
+      return [] unless resource
+
+      dashboard_class = resource.singularize.camelize + 'Dashboard'
+
+      dashboard_class.constantize::ATTRIBUTE_TYPES.keys.map(&:to_s)
+    end
+
+    def permitted_chart_params(params)
+      params.permit(
         :chart_type,
         :resource,
         :group_attribute,
         :attribute_to_apply_function,
         :function
       )
+    end
+
+    def draw_chart(params)
+
+      chart_params = permitted_chart_params(params)
 
       case chart_params[:chart_type]
       when 'line'

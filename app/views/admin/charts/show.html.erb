@@ -8,7 +8,7 @@
   </h1>
 
   <div>
-    <%= link_to t("administrate.actions.back"), :back, class: "button" %>
+    <%= link_to t("administrate.actions.back"), admin_charts_path(permitted_chart_params(params)), class: "button" %>
   </div>
 </header>
 
