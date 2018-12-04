@@ -1,3 +1,3 @@
 class User < ApplicationRecord
-  has_many :caras
+  has_many :cars
 end

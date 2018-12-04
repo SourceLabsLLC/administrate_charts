@@ -37,7 +37,7 @@ RSpec.describe Admin::ChartsController, type: :request do
 
       response_body = JSON.parse(response.body)
 
-      expect(response_body).to eq ["id", "email", "cars", "created_at", "updated_at"]
+      expect(response_body).to eq ["id", "email", "cars", "admin", "birthday_date", "created_at", "updated_at"]
     end
   end
 end
