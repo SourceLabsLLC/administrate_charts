@@ -30,7 +30,6 @@ module Admin
     end
 
     def draw_chart(params)
-
       chart_params = permitted_chart_params(params)
 
       case chart_params[:chart_type]
