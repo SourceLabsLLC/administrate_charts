@@ -1,9 +1,5 @@
 # AdministrateCharts
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/administrate_charts`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
-
 ## Installation
 
 Add this line to your application's Gemfile:
@@ -14,15 +10,13 @@ gem 'administrate_charts'
 
 And then execute:
 
-    $ bundle
-
-Or install it yourself as:
-
-    $ gem install administrate_charts
+  $ bundle
 
 ## Usage
 
-TODO: Write usage instructions here
+By default the gem will add a new option on your admin menu, called `Charts`. Where you can choose the resource, attributes and chart type.
+
+If for some reason you had to overwrite the `views/layouts/admin/application` file on you project, you need to add on its `head` tag the following code to make the gem work properly `<%= javascript_include_tag 'chartkickBundle' %>`
 
 ## Development
 
