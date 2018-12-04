@@ -5,23 +5,22 @@ require "administrate_charts/version"
 
 Gem::Specification.new do |spec|
   spec.name          = "administrate_charts"
-  spec.version       = AdministrateCharts::VERSION
-  spec.authors       = ["Jônatas Rancan de Souza"]
-  spec.email         = ["jonatasrancan@gmail.com"]
-
-  spec.summary       = "Administrate plugin to use charts"
+  spec.version       = AdministrateExportable::VERSION
+  spec.authors       = ["Jônatas Rancan", "Andrei Bondarev"]
+  spec.email         = ["hello@sourcelabs.io"]
+  spec.homepage      = 'https://github.com/SourceLabsLLC/administrate_charts'
+  spec.summary       = "Simple plugin to add ChartKick support to Administrate"
   spec.description   = spec.summary
-  spec.homepage      = "https://github.com/SourceLabsLLC/administrate_charts"
   spec.license       = "MIT"
 
-  # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
-  # to allow pushing to a single host or delete this section to allow pushing to any host.
-  if spec.respond_to?(:metadata)
-    spec.metadata["allowed_push_host"] = "TODO: Set to 'http://mygemserver.com'"
-  else
-    raise "RubyGems 2.0 or newer is required to protect against " \
-      "public gem pushes."
-  end
+  # # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
+  # # to allow pushing to a single host or delete this section to allow pushing to any host.
+  # if spec.respond_to?(:metadata)
+  #   spec.metadata["allowed_push_host"] = "TODO: Set to 'http://mygemserver.com'"
+  # else
+  #   raise "RubyGems 2.0 or newer is required to protect against " \
+  #     "public gem pushes."
+  # end
 
   spec.files         = `git ls-files -z`.split("\x0").reject do |f|
     f.match(%r{^(test|spec|features)/})
