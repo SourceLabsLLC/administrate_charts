@@ -11,6 +11,8 @@ class UserDashboard < Administrate::BaseDashboard
     id: Field::Number,
     email: Field::String,
     cars: Field::HasMany,
+    admin: Field::Boolean,
+    birthday_date: Field::DateTime,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
   }.freeze
