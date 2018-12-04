@@ -8,6 +8,6 @@
 /spec/dummy/log/
 /spec/dummy/tmp/
 /tmp/
-
+Gemfile.lock
 # rspec failure tracking
 .rspec_status
