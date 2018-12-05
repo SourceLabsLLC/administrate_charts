@@ -18,15 +18,10 @@ module Admin
     end
 
     def resource_attributes
-      render json: dashboard_class::ATTRIBUTE_TYPES.keys.map(&:to_s)
+      render json: Admin::AttributesList.call(chart_params[:resource])
     end
 
     private
-
-    def dashboard_class
-      klass = chart_params[:resource].singularize.camelize + 'Dashboard'
-      klass.constantize
-    end
 
     def chart_params
       params.permit(:chart_type, :resource, :group_attribute, :attribute_to_apply_function, :function)

@@ -37,7 +37,13 @@ RSpec.describe Admin::ChartsController, type: :request do
 
       response_body = JSON.parse(response.body)
 
-      expect(response_body).to eq ["id", "email", "cars", "admin", "birthday_date", "created_at", "updated_at"]
+      expect(response_body).to eq({
+        "group_attributes" => ["id", "email", "admin", "birthday_date", "created_at", "updated_at"],
+        "attributes_to_apply_function" => [
+          {"value"=>"id", "attribute_type"=>"number"},
+          {"value"=>"cars", "attribute_type"=>"has-many"}
+        ]
+      })
     end
   end
 end

@@ -1,7 +1,11 @@
 module Admin
   module ChartsHelper
     CHART_TYPES = [['Line', :line], ['Pie', :pie], ['Column', :column], ['Bar', :bar], ['Area', :area]].freeze
-    FUNCTION_TYPES = [['Sum', :sum], ['Count', :count], ['Average', :average]].freeze
+    FUNCTION_TYPES = [
+      ['Sum', :sum, { 'data-attribute-type' => 'number' }],
+      ['Count', :count, { 'data-attribute-type' => 'all' }],
+      ['Average', :average, { 'data-attribute-type' => 'number' }]
+    ].freeze
 
     def resource_select_options
       Administrate::Namespace.new('admin').resources.map do |resource|
