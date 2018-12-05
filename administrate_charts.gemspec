@@ -5,7 +5,7 @@ require "administrate_charts/version"
 
 Gem::Specification.new do |spec|
   spec.name          = "administrate_charts"
-  spec.version       = AdministrateExportable::VERSION
+  spec.version       = AdministrateCharts::VERSION
   spec.authors       = ["Jônatas Rancan", "Andrei Bondarev"]
   spec.email         = ["hello@sourcelabs.io"]
   spec.homepage      = 'https://github.com/SourceLabsLLC/administrate_charts'
