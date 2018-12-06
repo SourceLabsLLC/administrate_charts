@@ -7,9 +7,11 @@ RSpec.describe Admin::ChartsHelper, type: :helper do
     end
   end
 
-  describe '#attribute_select_options' do
-    it 'returns the attributes list from a specific resource' do
-      expect(helper.attribute_select_options('user')).to eq ["id", "email", "cars", "admin", "birthday_date", "created_at", "updated_at"]
+  describe '#attributes_list' do
+    it 'calls Admin::AttributesList' do
+      expect(Admin::AttributesList).to receive(:call).with('user')
+
+      helper.attributes_list('user')
     end
   end
 

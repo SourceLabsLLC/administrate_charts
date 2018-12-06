@@ -1,3 +1,8 @@
+require 'administrate/field/has_many'
+require 'administrate/field/has_one'
+require 'administrate/field/belongs_to'
+require 'administrate/field/number'
+
 module Admin
   class AttributesList
     def self.call(resource)
@@ -20,26 +25,29 @@ module Admin
     attr_reader :resource
 
     def group_attributes
-      dashboard_class::ATTRIBUTE_TYPES.select do |_, attribute_type|
-        [
-          Administrate::Field::HasMany,
-          Administrate::Field::HasOne,
-          Administrate::Field::BelongsTo
-        ].exclude?(attribute_type)
-      end.keys.map(&:to_s)
+      attributes = filter_attributes([
+        Administrate::Field::HasMany,
+        Administrate::Field::HasOne,
+        Administrate::Field::BelongsTo
+      ], :exclude?)
+
+      attributes = attributes.keys.map!(&:to_s) & resource_column_names
     end
 
     def attributes_to_apply_function
-      attributes = dashboard_class::ATTRIBUTE_TYPES.select do |_, attribute_type|
-        [
-          Administrate::Field::HasMany,
-          Administrate::Field::HasOne,
-          Administrate::Field::Number,
-        ].include?(attribute_type)
+      relation_attributes = filter_attributes([
+        Administrate::Field::HasMany,
+        Administrate::Field::HasOne
+      ], :include?)
+
+      attributes = filter_attributes([Administrate::Field::Number], :include?)
+
+      attributes.select! do |key, _|
+        resource_column_names.include?(key.to_s)
       end
 
-      attributes.map do |attribute_name, attribute_type|
-       { value: attribute_name.to_s, attribute_type: attribute_type_string(attribute_type) }
+      attributes.merge!(relation_attributes).map do |attribute_name, attribute_type|
+        { value: attribute_name.to_s, attribute_type: attribute_type_string(attribute_type) }
       end
     end
 
@@ -47,6 +55,18 @@ module Admin
       @dashboard_class ||= begin
         klass = resource.singularize.camelize + 'Dashboard'
         klass.constantize
+      end
+    end
+
+    def resource_column_names
+      @resource_column_names ||= begin
+        resource.singularize.camelize.constantize.column_names
+      end
+    end
+
+    def filter_attributes(attributes_list, method_to_apply)
+      dashboard_class::ATTRIBUTE_TYPES.select do |_, attribute_type|
+        attributes_list.send(method_to_apply, attribute_type)
       end
     end
 

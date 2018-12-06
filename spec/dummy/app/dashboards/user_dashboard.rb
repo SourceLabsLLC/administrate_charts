@@ -12,6 +12,7 @@ class UserDashboard < Administrate::BaseDashboard
     email: Field::String,
     cars: Field::HasMany,
     admin: Field::Boolean,
+    plates: Field::String,
     birthday_date: Field::DateTime,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,

@@ -17,12 +17,24 @@ module Admin
       end.compact!
     end
 
-    def attribute_select_options(resource)
+    def group_attributes(resource)
       return [] unless resource
 
-      dashboard_class = resource.singularize.camelize + 'Dashboard'
+      attributes_list(resource)[:group_attributes]
+    end
 
-      dashboard_class.constantize::ATTRIBUTE_TYPES.keys.map(&:to_s)
+    def attribute_to_apply_function(resource)
+      return [] unless resource
+
+      attributes_list(resource)[:attributes_to_apply_function].map do |element|
+        [element[:value], element[:value], { 'data-attribute-type' => element[:attribute_type] }]
+      end
+    end
+
+    def attributes_list(resource)
+      @attributes_list ||= begin
+        Admin::AttributesList.call(resource)
+      end
     end
 
     def permitted_chart_params(params)
