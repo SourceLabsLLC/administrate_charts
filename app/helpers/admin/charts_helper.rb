@@ -35,26 +35,28 @@ module Admin
 
     def draw_chart(params)
       chart_params = permitted_chart_params(params)
+      ytitle = "#{chart_params[:function].capitalize}(#{chart_params[:attribute_to_apply_function].humanize})"
+      xtitle = chart_params[:group_attribute].humanize
 
       case chart_params[:chart_type]
       when 'line'
         line_chart data_admin_charts_path(chart_params),
-          ytitle: chart_params[:attribute_to_apply_function].humanize,
-          xtitle: chart_params[:group_attribute].humanize
+          ytitle: ytitle,
+          xtitle: xtitle
       when 'pie'
         pie_chart data_admin_charts_path(chart_params)
       when 'column'
         column_chart data_admin_charts_path(chart_params),
-          ytitle: chart_params[:attribute_to_apply_function].humanize,
-          xtitle: chart_params[:group_attribute].humanize
+          ytitle: ytitle,
+          xtitle: xtitle
       when 'bar'
         bar_chart data_admin_charts_path(chart_params),
-          ytitle: chart_params[:group_attribute].humanize,
-          xtitle: chart_params[:attribute_to_apply_function].humanize
+          ytitle: xtitle,
+          xtitle: ytitle
       when 'area'
         area_chart data_admin_charts_path(chart_params),
-          ytitle: chart_params[:attribute_to_apply_function].humanize,
-          xtitle: chart_params[:group_attribute].humanize
+          ytitle: ytitle,
+          xtitle: xtitle
       end
     end
   end

@@ -19,7 +19,8 @@ RSpec.describe Admin::ChartsHelper, type: :helper do
         chart_type: chart_type,
         attribute_to_apply_function: 'id',
         group_attribute: 'created_at',
-        resource: 'user'
+        resource: 'user',
+        function: 'sum'
       })
     end
 
@@ -31,7 +32,7 @@ RSpec.describe Admin::ChartsHelper, type: :helper do
       it 'calls line_chart helper with correct params' do
         expect(helper).to receive(:line_chart).with(
           data_admin_charts_path(permitted_params),
-          ytitle: 'Id',
+          ytitle: 'Sum(Id)',
           xtitle: 'Created at'
         )
 
@@ -55,7 +56,7 @@ RSpec.describe Admin::ChartsHelper, type: :helper do
       it 'calls column_chart helper with correct params' do
         expect(helper).to receive(:column_chart).with(
           data_admin_charts_path(permitted_params),
-          ytitle: 'Id',
+          ytitle: 'Sum(Id)',
           xtitle: 'Created at'
         )
 
@@ -69,7 +70,7 @@ RSpec.describe Admin::ChartsHelper, type: :helper do
       it 'calls bar_chart helper with correct params' do
         expect(helper).to receive(:bar_chart).with(
           data_admin_charts_path(permitted_params),
-          xtitle: 'Id',
+          xtitle: 'Sum(Id)',
           ytitle: 'Created at'
         )
 
@@ -83,7 +84,7 @@ RSpec.describe Admin::ChartsHelper, type: :helper do
       it 'calls area_chart helper with correct params' do
         expect(helper).to receive(:area_chart).with(
           data_admin_charts_path(permitted_params),
-          ytitle: 'Id',
+          ytitle: 'Sum(Id)',
           xtitle: 'Created at'
         )
 
