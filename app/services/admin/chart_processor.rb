@@ -25,11 +25,13 @@ module Admin
     attr_accessor :resource, :group_attribute, :attribute_to_apply_function, :function
 
     def group_query(query)
+      resource_table = resource.pluralize
+
       case attribute_type(group_attribute)
       when Administrate::Field::DateTime.to_s
-        query.group_by_day(group_attribute.to_sym, format: '%m/%d/%Y')
+        query.group_by_day("#{resource_table}.#{group_attribute}", format: '%m/%d/%Y')
       else
-        query.group(group_attribute.to_sym)
+        query.group("#{resource_table}.#{group_attribute}")
       end
     end
 
