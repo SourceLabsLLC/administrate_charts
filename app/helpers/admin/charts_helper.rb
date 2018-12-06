@@ -2,8 +2,10 @@ module Admin
   module ChartsHelper
     CHART_TYPES = [['Line', :line], ['Pie', :pie], ['Column', :column], ['Bar', :bar], ['Area', :area]].freeze
     FUNCTION_TYPES = [
-      ['Sum', :sum, { 'data-attribute-type' => 'number' }],
       ['Count', :count, { 'data-attribute-type' => 'all' }],
+      ['Maximum', :maximum, { 'data-attribute-type' => 'number' }],
+      ['Minimum', :minimum, { 'data-attribute-type' => 'number' }],
+      ['Sum', :sum, { 'data-attribute-type' => 'number' }],
       ['Average', :average, { 'data-attribute-type' => 'number' }]
     ].freeze
 
