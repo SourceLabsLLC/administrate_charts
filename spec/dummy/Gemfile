@@ -5,7 +5,7 @@ ruby '2.4.2'
 
 gem 'rails', '~> 5.2.1'
 gem 'pg'
-gem 'administrate'
+gem 'administrate', '>= 0.2.1'
 gem 'administrate_charts', path: File.path('../../')
 
 group :development do
