@@ -1,9 +1,5 @@
 # AdministrateCharts
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/administrate_charts`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
-
 ## Installation
 
 Add this line to your application's Gemfile:
@@ -14,21 +10,38 @@ gem 'administrate_charts'
 
 And then execute:
 
-    $ bundle
-
-Or install it yourself as:
-
-    $ gem install administrate_charts
+  $ bundle
 
 ## Usage
 
-TODO: Write usage instructions here
+By default the gem will add a new option on your admin menu, called `Charts`. Where you can choose the resource, attributes and chart type.
+
+  * Resource list is a mirror of Administrate sidebar menu.
+  * The attributes list are generated from the `ATTRIBUTE_TYPES` from the dashboards, also we excludes the attributes that aren't real columns. Relationships attributes keeps on the list
+  * You can choose between the following chart types: `Pie`, `Bar`, `Column`, `Line` and `Area`
+  * The functions you can apply on the data are: `count`, `sum`, `min`, `max` and `average`
+
+If for some reason you had to overwrite the `views/layouts/admin/application` file on you project, you need to add on its `head` tag the following code to make the gem work properly `<%= javascript_include_tag 'chartkickBundle' %>`
+
+## Examples
+
+### Chart Form
+![Chart Form](/images/chart-form.png)
+
+### Area Chart
+![Area Chart](/images/chart-area.png)
+
+### Column Chart
+![Column Chart](/images/chart-column.png)
+
+### Pie Chart
+![Pie Chart](/images/chart-pie.png)
 
 ## Development
 
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+After checking out the repo, run `cp /spec/dummy/config/database.yml.example /spec/dummy/config/database/yml` and configure the file, so you can run the tests using the `dummy` app.
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+After implementing the new feature, don't forgot to add it to the dummy app and add the proper tests. To run the tests `bundle exec rspec`.
 
 ## Contributing
 

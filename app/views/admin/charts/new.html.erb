@@ -1,0 +1,99 @@
+<% content_for(:title) do %>
+  Chart
+<% end %>
+
+<header class="main-content__header" role="banner">
+  <h1 class="main-content__page-title">
+    <%= content_for(:title) %>
+  </h1>
+
+  <div>
+    <%= link_to t("administrate.actions.back"), admin_root_path, class: "button" %>
+  </div>
+</header>
+
+<section class="main-content__body">
+  <%= form_with(url: show_admin_charts_path , local: true, method: :post, class: "form") do |f| %>
+    <div class="field-unit">
+      <div class="field-unit__label">
+        <%= f.label 'Chart type' %>
+      </div>
+      <div class="field-unit__field">
+        <%=
+          f.select(
+            :chart_type,
+            Admin::ChartsHelper::CHART_TYPES,
+            selected: params[:chart_type]
+          )
+        %>
+      </div>
+    </div>
+
+    <div class="field-unit">
+      <div class="field-unit__label">
+        <%= f.label 'Table' %>
+      </div>
+      <div class="field-unit__field">
+        <%=
+          f.select(
+            :resource,
+            resource_select_options,
+            selected: params[:resource],
+            include_blank: true
+          )
+        %>
+      </div>
+    </div>
+
+    <div class="field-unit">
+      <div class="field-unit__label">
+        <%= f.label 'Group by attribute' %>
+      </div>
+      <div class="field-unit__field">
+        <%=
+          f.select(
+            :group_attribute,
+            group_attributes(params[:resource]),
+            { include_blank: true, selected: params[:group_attribute] },
+            { class: 'axis' }
+          )
+        %>
+      </div>
+    </div>
+
+    <div class="field-unit">
+      <div class="field-unit__label">
+        <%= f.label 'Attribute to apply function' %>
+      </div>
+      <div class="field-unit__field">
+        <%=
+          f.select(
+            :attribute_to_apply_function,
+            attribute_to_apply_function(params[:resource]),
+            { include_blank: true, selected: params[:attribute_to_apply_function] },
+            { class: 'axis' }
+          )
+        %>
+      </div>
+    </div>
+
+    <div class="field-unit">
+      <div class="field-unit__label">
+        <%= f.label 'Function' %>
+      </div>
+      <div class="field-unit__field">
+        <%=
+          f.select(
+            :function,
+            Admin::ChartsHelper::FUNCTION_TYPES,
+            { selected: params[:function] }
+          )
+        %>
+      </div>
+    </div>
+
+    <div class="form-actions">
+      <%= f.submit 'Generate' %>
+    </div>
+  <% end %>
+</section>

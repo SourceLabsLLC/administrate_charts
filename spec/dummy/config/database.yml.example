@@ -1,0 +1,14 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  username: your-user
+  password: your-password
+  host: localhost
+
+development:
+  <<: *default
+  database: charts_development
+
+test:
+  <<: *default
+  database: charts_test

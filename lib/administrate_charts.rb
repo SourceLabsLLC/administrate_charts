@@ -1,5 +1,7 @@
 require "administrate_charts/version"
+require "chartkick"
 
 module AdministrateCharts
-  # Your code goes here...
+  class Engine < ::Rails::Engine
+  end
 end
