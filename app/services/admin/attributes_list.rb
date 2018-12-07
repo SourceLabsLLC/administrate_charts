@@ -2,6 +2,7 @@ require 'administrate/field/has_many'
 require 'administrate/field/has_one'
 require 'administrate/field/belongs_to'
 require 'administrate/field/number'
+require 'administrate/field/polymorphic'
 
 module Admin
   class AttributesList
@@ -28,7 +29,8 @@ module Admin
       attributes = filter_attributes([
         Administrate::Field::HasMany,
         Administrate::Field::HasOne,
-        Administrate::Field::BelongsTo
+        Administrate::Field::BelongsTo,
+        Administrate::Field::Polymorphic
       ], :exclude?)
 
       attributes = attributes.keys.map!(&:to_s) & resource_column_names
